@@ -27,7 +27,9 @@ const View = (props) => {
       });
   };
 
-  const handleEdit = (article) => {};
+  const handleEdit = (article) => {
+
+  };
 
   const handleEditSelect = (id) => {
     setEditing(true);
@@ -52,7 +54,7 @@ const View = (props) => {
                   handleDelete={() => {
                     handleDelete(article.id);
                   }}
-                  handleEditSelect={handleEditSelect}
+                  handleEditSelect={() => {handleEditSelect(article.id)}}
                 />
               </ArticleDivider>
             );
