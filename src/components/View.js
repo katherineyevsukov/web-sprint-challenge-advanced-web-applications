@@ -29,15 +29,14 @@ const View = (props) => {
 
   const handleEdit = (article) => {
     axiosWithAuth()
-    .put(`/articles/${article.id}`, article)
-    .then(res => {
-        setArticles(res.data)
-        setEditing(false)
-    })
-    .catch(err => {
-        console.log(err)
-    })
-    
+      .put(`/articles/${article.id}`, article)
+      .then((res) => {
+        setArticles(res.data);
+        setEditing(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleEditSelect = (id) => {
@@ -63,7 +62,9 @@ const View = (props) => {
                   handleDelete={() => {
                     handleDelete(article.id);
                   }}
-                  handleEditSelect={() => {handleEditSelect(article.id)}}
+                  handleEditSelect={() => {
+                    handleEditSelect(article.id);
+                  }}
                 />
               </ArticleDivider>
             );
@@ -85,10 +86,10 @@ const View = (props) => {
 export default View;
 
 //Task List:
-//1. Build and import axiosWithAuth module in the utils.
-//2. When the component mounts, make an http request that adds all articles to state.
-//3. Complete handleDelete method. It should make a request that delete the article with the included id.
-//4. Complete handleEdit method. It should make a request that updates the article that matches the included article param.
+//1. Build and import axiosWithAuth module in the utils. - DONE
+//2. When the component mounts, make an http request that adds all articles to state. - DONE
+//3. Complete handleDelete method. It should make a request that delete the article with the included id. - DONE
+//4. Complete handleEdit method. It should make a request that updates the article that matches the included article param. - DONE
 
 const Container = styled.div`
   padding: 0.5em;
