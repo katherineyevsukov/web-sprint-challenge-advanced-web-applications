@@ -28,7 +28,10 @@ const View = (props) => {
   };
 
   const handleEdit = (article) => {
-
+    // axiosWithAuth()
+    // .put(`/articles/${article.id}`)
+    console.log('articlid', article.id)
+    console.log(editId)
   };
 
   const handleEditSelect = (id) => {
