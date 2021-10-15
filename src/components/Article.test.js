@@ -42,8 +42,12 @@ test('renders headline, author from the article when passed in through props', (
 
 });
 
-// test('renders "Associated Press" when no author is given', ()=> {
-// });
+test('renders "Associated Press" when no author is given', ()=> {
+    render(<Article article={{...testArticle, author: null}} />)
+
+    const author = screen.getByTestId('author')
+    expect(author).toHaveTextContent(/Associated Press/i)
+});
 
 // test('executes handleDelete when the delete button is pressed', ()=> {
 // });
