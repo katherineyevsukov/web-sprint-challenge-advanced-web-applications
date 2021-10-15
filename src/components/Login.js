@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -22,12 +23,26 @@ const Login = () => {
             errorMessage: ''
         })
     }
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:5000/api/login', formState.formValues)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            setFormState({
+                formValues: initialState.formValues,
+                errorMessage: err.response.data.error
+            })
+        })
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
-            <form>
+            <form onSubmit={handleLogin}>
                 <label htmlFor="username">Username:
                     <input
                         id="username" 
