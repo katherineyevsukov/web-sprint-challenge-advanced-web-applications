@@ -1,10 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 const moment = require("moment");
-
 import userEvent from "@testing-library/user-event";
-import MutationObserver from "mutationobserver-shim";
-
 import Article from "./Article";
 import { render, screen } from "@testing-library/react";
 
