@@ -1,27 +1,39 @@
-import React from 'react';
-import { Route, Redirect } from "react-router-dom";
-import PrivateRoute from './PrivateRoute';
-import styled from 'styled-components';
+import React from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
+import styled from "styled-components";
 
-import Header from './Header';
-import LambdaHeader from './LambdaHeader';
-import View from './View';
-import Login from './Login';
-import Logout from './Logout';
+import Header from "./Header";
+import LambdaHeader from "./LambdaHeader";
+import View from "./View";
+import Login from "./Login";
+import Logout from "./Logout";
 
 const App = () => {
   return (
     <AppContainer>
-      <LambdaHeader/>
-      <Header/>
-      <RouteContainer>
-        <Route exact path="/">
-          <Login/>
-        </Route>          
-      </RouteContainer>
+      <LambdaHeader />
+      <Header />
+
+      <Switch>
+        <RouteContainer>
+          <Route path ="/logout">
+            <Logout />
+          </Route>
+          <Route path="/view">
+            <View />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/">
+            <Login />
+          </Route>
+        </RouteContainer>
+      </Switch>
     </AppContainer>
-  )
-}
+  );
+};
 
 export default App;
 
@@ -31,13 +43,12 @@ export default App;
 //3. Create a PrivateRoute for View component point to '/view.'
 //4. Create a PrivateRoute for Logout component pointing to '/logout.'
 
-
 const AppContainer = styled.div`
   height: 100%;
-`
+`;
 const RouteContainer = styled.div`
   display: flex;
   height: 85%;
   align-items: center;
   flex-direction: column;
-`
+`;
