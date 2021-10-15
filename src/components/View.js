@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import articleService from "../services/articleServices";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 import Article from "./Article";
 import EditForm from "./EditForm";
@@ -13,9 +14,18 @@ const View = (props) => {
   useEffect(async () => {
     const articles = await articleService();
     setArticles(articles);
-  });
+  }, []);
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    axiosWithAuth()
+      .delete(`/articles/${id}`)
+      .then((res) => {
+        setArticles(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleEdit = (article) => {};
 
@@ -39,7 +49,9 @@ const View = (props) => {
                 <Article
                   key={article.id}
                   article={article}
-                  handleDelete={handleDelete}
+                  handleDelete={() => {
+                    handleDelete(article.id);
+                  }}
                   handleEditSelect={handleEditSelect}
                 />
               </ArticleDivider>

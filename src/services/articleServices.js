@@ -2,7 +2,7 @@ import axiosWithAuth from './../utils/axiosWithAuth'
 
 const articleService = ()=> {
     return axiosWithAuth()
-    .get('http://localhost:5000/api/articles')
+    .get('/articles')
     .then(res => {
         return res.data
     })
