@@ -17,12 +17,10 @@ const App = () => {
 
       <Switch>
         <RouteContainer>
-          <Route path ="/logout">
-            <Logout />
-          </Route>
-          <Route path="/view">
-            <View />
-          </Route>
+          <PrivateRoute path="/logout" component={Logout} />
+
+          <PrivateRoute path="/view" component={View} />
+
           <Route path="/login">
             <Login />
           </Route>
