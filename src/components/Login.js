@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const initialState = {
+    formValues: {
+        username: '',
+        password: '',
+    },
+    errorMessage: ''
+}
+
 const Login = () => {
+
+    const [formState, setFormState] = useState(initialState)
+
+    const handleFormChange = (e) => {
+        setFormState({
+            formValues: {
+                ...formState.formValues,
+                [e.target.name]: e.target.value
+            },
+            errorMessage: ''
+        })
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
@@ -13,6 +33,8 @@ const Login = () => {
                         id="username" 
                         name="username"
                         placeholder="username"
+                        value={formState.formValues.username}
+                        onChange={handleFormChange}
                     />
                 </label>
                 <label htmlFor="password">Password:
@@ -20,11 +42,13 @@ const Login = () => {
                     id="password" 
                     name="password"
                     placeholder="password"
+                    value={formState.formValues.password}
+                    onChange={handleFormChange}
                     />  
                 </label>
                 <button id="submit">Login</button>
             </form>
-            <p id="error"></p>
+            {formState.errorMessage ? <p id="error">{formState.errorMessage}</p> : null}
         </ModalContainer>
     </ComponentContainer>);
 }
